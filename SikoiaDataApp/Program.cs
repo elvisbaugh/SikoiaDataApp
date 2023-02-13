@@ -1,3 +1,4 @@
+using SikoiaDataApp.Domain.Extensions;
 using SikoiaDataApp.Domain.Models;
 using SikoiaDataApp.Domain.Models.Abstraction;
 using SikoiaDataApp.Domain.Models.Response;
@@ -42,6 +43,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.ConfigureCustomExceptionMiddleware();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

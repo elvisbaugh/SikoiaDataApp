@@ -23,16 +23,12 @@ namespace SikoiaDataApp.Domain.ServiceClients.Implementation
                .AllowAnyHttpStatus()
                .GetAsync();
 
+
             if (!response.ResponseMessage.IsSuccessStatusCode)
             {
-                var errorMessage = new HttpResponseMessage((HttpStatusCode)response.StatusCode)
-                {
-                    Content = new StringContent("Failed"),
-                    ReasonPhrase = "Unable to processs request!",
-                };
-
-                throw new HttpResponseException(errorMessage);
+                throw new HttpResponseException((HttpStatusCode)response.StatusCode);
             }
+
             return await response.GetJsonAsync<ThirdPartyBRegionData>();
         }
     }
